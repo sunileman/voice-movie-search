@@ -1,0 +1,99 @@
+PUT movies_inferred
+{
+  "mappings": {
+    "dynamic": "false",
+    "properties": {
+      "genres": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "homepage": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "overview": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "passages": {
+        "type": "nested",
+        "properties": {
+          "content_embedding": {
+            "properties": {
+              "is_truncated": {
+                "type": "boolean"
+              },
+              "model_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "predicted_value": {
+                "type": "sparse_vector"
+              }
+            }
+          },
+          "text": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "vector": {
+            "properties": {
+              "is_truncated": {
+                "type": "boolean"
+              },
+              "model_id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "predicted_value": {
+                "type": "dense_vector",
+                "dims": 384,
+                "index": true,
+                "similarity": "dot_product"
+              }
+            }
+          }
+        }
+      },
+      "title": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}

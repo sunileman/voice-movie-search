@@ -1,0 +1,5 @@
+azure-cognitiveservices-speech
+streamlit
+openai
+elasticsearch
+elasticsearch-llm-cache
